@@ -1,0 +1,965 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zafran Arabian Kitchen</title>
+
+<style>
+:root {
+    --green: #123c32;
+    --dark: #092820;
+    --gold: #d9ad55;
+    --cream: #fff9ed;
+    --text: #25332d;
+    --muted: #6d786f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+}
+
+header {
+    background: var(--green);
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--gold);
+}
+
+.logo span {
+    display: block;
+    font-size: 11px;
+    color: white;
+    letter-spacing: 4px;
+    margin-top: 5px;
+}
+
+nav {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: var(--gold);
+}
+
+.hero {
+    min-height: 470px;
+    background:
+        linear-gradient(90deg, rgba(5,30,23,.92), rgba(5,30,23,.30)),
+        url("https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+    display: flex;
+    align-items: center;
+    padding: 70px 8%;
+    color: white;
+}
+
+.hero-content {
+    max-width: 620px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 6vw, 66px);
+    line-height: 1.1;
+    margin: 15px 0;
+}
+
+.hero h1 span {
+    color: var(--gold);
+}
+
+.hero p {
+    line-height: 1.8;
+    color: #f0eee5;
+    margin-bottom: 25px;
+}
+
+.tag {
+    color: var(--gold);
+    letter-spacing: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 22px;
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: .88;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 35px 7%;
+    background: white;
+    text-align: center;
+}
+
+.feature {
+    padding: 15px;
+}
+
+.feature .icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.feature h3 {
+    color: var(--green);
+    margin-bottom: 8px;
+}
+
+.feature p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.section {
+    padding: 55px 7%;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-heading h2 {
+    color: var(--green);
+    font-size: 34px;
+    margin: 10px 0;
+}
+
+.section-heading p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.controls {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.controls input,
+.controls select,
+.checkout-form input,
+.checkout-form textarea,
+.checkout-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d8d8cc;
+    border-radius: 5px;
+    font: inherit;
+    background: white;
+}
+
+.controls input {
+    flex: 2;
+    min-width: 200px;
+}
+
+.controls select {
+    flex: 1;
+    min-width: 180px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.food-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0,0,0,.07);
+    transition: transform .2s;
+}
+
+.food-card:hover {
+    transform: translateY(-4px);
+}
+
+.food-card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+    background: #eee9df;
+}
+
+.food-info {
+    padding: 18px;
+}
+
+.food-info h3 {
+    color: var(--green);
+    margin-bottom: 8px;
+}
+
+.food-info p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 39px;
+}
+
+.food-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--green);
+}
+
+.add-btn {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 10px 13px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background: var(--gold);
+    color: var(--dark);
+}
+
+.cart-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 25px;
+    align-items: start;
+}
+
+.panel {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 18px rgba(0,0,0,.06);
+}
+
+.panel h3 {
+    color: var(--green);
+    margin-bottom: 18px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee9df;
+}
+
+.cart-item-name {
+    font-weight: bold;
+}
+
+.cart-item small {
+    color: var(--muted);
+    display: block;
+    margin-top: 5px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.quantity-controls button {
+    min-width: 27px;
+    min-height: 27px;
+    border: none;
+    background: #e8eee8;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.remove-btn {
+    background: transparent !important;
+    color: #b33b30;
+    padding: 4px;
+}
+
+.empty {
+    color: var(--muted);
+    padding: 10px 0 20px;
+}
+
+.total-line {
+    display: flex;
+    justify-content: space-between;
+    margin: 14px 0;
+}
+
+.total-line.grand {
+    border-top: 1px solid #ddd;
+    padding-top: 16px;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--green);
+}
+
+.checkout-form label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 14px 0 7px;
+}
+
+.checkout-form textarea {
+    min-height: 85px;
+    resize: vertical;
+}
+
+.checkout-form .btn {
+    width: 100%;
+    margin-top: 18px;
+}
+
+.note {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin-top: 15px;
+}
+
+.about {
+    background: var(--green);
+    color: white;
+    text-align: center;
+}
+
+.about h2 {
+    color: var(--gold);
+    margin-bottom: 15px;
+    font-size: 32px;
+}
+
+.about p {
+    max-width: 750px;
+    margin: auto;
+    line-height: 1.9;
+    color: #f1eee6;
+}
+
+footer {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+    line-height: 1.8;
+    font-size: 13px;
+}
+
+footer strong {
+    color: var(--gold);
+}
+
+@media (max-width: 900px) {
+    .menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 18px 5%;
+    }
+
+    nav {
+        gap: 14px;
+    }
+
+    .hero {
+        min-height: 400px;
+        padding: 45px 6%;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+        padding: 25px 6%;
+    }
+
+    .section {
+        padding: 40px 5%;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .food-card img {
+        height: 230px;
+    }
+
+    .section-heading h2 {
+        font-size: 28px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        ZAFRAN
+        <span>ARABIAN KITCHEN</span>
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Our Menu</a>
+        <a href="#about">About Us</a>
+        <a href="#cart">My Cart (<span id="cart-count">0</span>)</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="tag">A TASTE OF ARABIA</div>
+        <h1>Welcome to <span>Zafran Arabian Kitchen</span></h1>
+        <p>
+            Experience the rich flavours of Arabia with fragrant mandi,
+            delicious shawarma, authentic grills and traditional desserts.
+            Freshly prepared for a memorable dining experience.
+        </p>
+        <a href="#menu" class="btn">Explore Our Menu</a>
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature">
+        <div class="icon">🍽️</div>
+        <h3>Authentic Flavours</h3>
+        <p>Enjoy Arabian-inspired dishes prepared with aromatic spices.</p>
+    </div>
+
+    <div class="feature">
+        <div class="icon">🥘</div>
+        <h3>Freshly Prepared</h3>
+        <p>Delicious meals made with care and attention to flavour.</p>
+    </div>
+
+    <div class="feature">
+        <div class="icon">🛵</div>
+        <h3>Easy Ordering</h3>
+        <p>Choose your favourites and organise your order in a few clicks.</p>
+    </div>
+</section>
+
+<section class="section" id="menu">
+    <div class="section-heading">
+        <div class="tag">DISCOVER OUR FOOD</div>
+        <h2>Our Arabian Menu</h2>
+        <p>Explore our selection of meals, grills, sides, desserts and drinks.</p>
+    </div>
+
+    <div class="controls">
+        <input type="search" id="search"
+               placeholder="Search for a dish..."
+               aria-label="Search menu">
+
+        <select id="category" aria-label="Filter by category">
+            <option value="All">All Categories</option>
+            <option value="Meals">Arabian Meals</option>
+            <option value="Shawarma">Shawarma</option>
+            <option value="Grills">Grills</option>
+            <option value="Starters">Starters & Sides</option>
+            <option value="Desserts">Desserts</option>
+            <option value="Drinks">Drinks</option>
+        </select>
+    </div>
+
+    <div class="menu-grid" id="menu-grid"></div>
+</section>
+
+<section class="section" id="cart">
+    <div class="section-heading">
+        <div class="tag">YOUR ORDER</div>
+        <h2>Shopping Cart & Checkout</h2>
+        <p>Review your items and enter your delivery details.</p>
+    </div>
+
+    <div class="cart-layout">
+        <div class="panel">
+            <h3>Your Selected Items</h3>
+            <div id="cart-items"></div>
+
+            <div class="total-line">
+                <span>Subtotal</span>
+                <strong id="subtotal">₹0</strong>
+            </div>
+
+            <div class="total-line">
+                <span>Delivery fee</span>
+                <strong id="delivery">₹0</strong>
+            </div>
+
+            <div class="total-line grand">
+                <span>Total</span>
+                <strong id="total">₹0</strong>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3>Delivery Information</h3>
+
+            <form class="checkout-form" id="checkout-form">
+                <label for="customer-name">Full Name</label>
+                <input id="customer-name" type="text" required
+                       placeholder="Enter your full name">
+
+                <label for="phone">Phone Number</label>
+                <input id="phone" type="tel" required
+                       pattern="[0-9]{10}" maxlength="10"
+                       placeholder="10-digit mobile number">
+
+                <label for="address">Delivery Address</label>
+                <textarea id="address" required
+                          placeholder="Enter your complete address"></textarea>
+
+                <label for="payment">Payment Preference</label>
+                <select id="payment" required>
+                    <option value="Cash on Delivery">Cash on Delivery</option>
+                    <option value="UPI">UPI (arranged separately)</option>
+                </select>
+
+                <button type="submit" class="btn">Place Demo Order</button>
+            </form>
+
+            <p class="note">
+                Student project demonstration only. This website does not
+                transmit orders to a restaurant or process real payments.
+                Do not enter real personal or payment information into a
+                public demonstration.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section about" id="about">
+    <h2>About Zafran Arabian Kitchen</h2>
+    <p>
+        Zafran Arabian Kitchen celebrates the inviting flavours of Arabian
+        cuisine. From aromatic rice dishes and grilled favourites to sweet
+        traditional treats, our menu brings together a variety of dishes
+        for food lovers. Explore the menu and enjoy a simple online ordering
+        experience.
+    </p>
+</section>
+
+<footer>
+    <strong>Zafran Arabian Kitchen</strong>
+    <p>Authentic Arabian Flavours • Fresh Food • Warm Hospitality</p>
+    <p>© 2026 Zafran Arabian Kitchen. College project demonstration.</p>
+</footer>
+
+<script>
+const menu = [
+    {
+        id: 1,
+        name: "Chicken Mandi",
+        category: "Meals",
+        price: 250,
+        description: "Aromatic rice served with tender chicken.",
+        image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 2,
+        name: "Mutton Mandi",
+        category: "Meals",
+        price: 350,
+        description: "Fragrant rice with flavourful mutton.",
+        image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 3,
+        name: "Chicken Kabsa",
+        category: "Meals",
+        price: 270,
+        description: "Spiced rice with a delicious chicken portion.",
+        image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 4,
+        name: "Chicken Shawarma Roll",
+        category: "Shawarma",
+        price: 120,
+        description: "Juicy chicken, vegetables and creamy sauce.",
+        image: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 5,
+        name: "Shawarma Plate",
+        category: "Shawarma",
+        price: 180,
+        description: "Chicken shawarma served with tasty sides.",
+        image: "https://images.unsplash.com/photo-1561651823-34feb02250e4?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 6,
+        name: "Mixed Grill Platter",
+        category: "Grills",
+        price: 380,
+        description: "A selection of grilled favourites.",
+        image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80&sat=-30"
+    },
+    {
+        id: 7,
+        name: "Chicken Shish Kebab",
+        category: "Grills",
+        price: 220,
+        description: "Seasoned chicken pieces cooked on skewers.",
+        image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 8,
+        name: "Grilled Chicken",
+        category: "Grills",
+        price: 240,
+        description: "Grilled chicken with aromatic seasoning.",
+        image: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 9,
+        name: "Hummus with Pita",
+        category: "Starters",
+        price: 100,
+        description: "Creamy chickpea dip with pita bread.",
+        image: "https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 10,
+        name: "Falafel",
+        category: "Starters",
+        price: 90,
+        description: "Crispy chickpea bites with herbs and spices.",
+        image: "https://images.unsplash.com/photo-1547058881-aa0edd92aab3?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 11,
+        name: "Fattoush Salad",
+        category: "Starters",
+        price: 110,
+        description: "A fresh salad with a bright, tangy dressing.",
+        image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 12,
+        name: "Arabic Bread",
+        category: "Starters",
+        price: 40,
+        description: "Soft bread to accompany your meal.",
+        image: "https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 13,
+        name: "Kunafa",
+        category: "Desserts",
+        price: 130,
+        description: "A traditional Middle Eastern sweet treat.",
+        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 14,
+        name: "Baklava",
+        category: "Desserts",
+        price: 100,
+        description: "Sweet pastry with a nutty filling.",
+        image: "https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 16,
+        name: "Mango Juice",
+        category: "Drinks",
+        price: 80,
+        description: "Sweet and refreshing mango juice.",
+        image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 17,
+        name: "Arabic Coffee",
+        category: "Drinks",
+        price: 60,
+        description: "A warm coffee inspired by Arabian tradition.",
+        image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 18,
+        name: "Garlic Sauce",
+        category: "Starters",
+        price: 35,
+        description: "A creamy garlic dip served as a side.",
+        image: "https://images.unsplash.com/photo-1472476443507-c7a5948772fc?auto=format&fit=crop&w=700&q=80"
+    }
+];
+
+let cart = {};
+
+try {
+    cart = JSON.parse(localStorage.getItem("zafranCart")) || {};
+} catch (error) {
+    cart = {};
+}
+
+function saveCart() {
+    try {
+        localStorage.setItem("zafranCart", JSON.stringify(cart));
+    } catch (error) {
+        // The cart still works during the current page session.
+    }
+}
+
+function renderMenu() {
+    const searchTerm = document.getElementById("search")
+        .value.toLowerCase().trim();
+
+    const selectedCategory = document.getElementById("category").value;
+
+    const filtered = menu.filter(item => {
+        const matchesSearch =
+            item.name.toLowerCase().includes(searchTerm) ||
+            item.description.toLowerCase().includes(searchTerm);
+
+        const matchesCategory =
+            selectedCategory === "All" ||
+            item.category === selectedCategory;
+
+        return matchesSearch && matchesCategory;
+    });
+
+    const grid = document.getElementById("menu-grid");
+
+    if (filtered.length === 0) {
+        grid.innerHTML =
+            '<p class="empty">No dishes found. Try another search.</p>';
+        return;
+    }
+
+    grid.innerHTML = filtered.map(item => `
+        <article class="food-card">
+            <img src="${item.image}"
+                 alt="${item.name}"
+                 loading="lazy"
+                 onerror="this.onerror=null;this.src='https://placehold.co/700x450/f6eddb/123c32?text=Zafran+${encodeURIComponent(item.name)}'">
+
+            <div class="food-info">
+                <h3>${item.name}</h3>
+                <p>${item.description}</p>
+
+                <div class="food-bottom">
+                    <span class="price">₹${item.price}</span>
+                    <button class="add-btn"
+                            onclick="addToCart(${item.id})">
+                        + Add
+                    </button>
+                </div>
+            </div>
+        </article>
+    `).join("");
+}
+
+function addToCart(id) {
+    cart[id] = (cart[id] || 0) + 1;
+    saveCart();
+    renderCart();
+}
+
+function changeQuantity(id, change) {
+    cart[id] = (cart[id] || 0) + change;
+
+    if (cart[id] <= 0) {
+        delete cart[id];
+    }
+
+    saveCart();
+    renderCart();
+}
+
+function renderCart() {
+    const container = document.getElementById("cart-items");
+
+    const ids = Object.keys(cart).filter(id =>
+        cart[id] > 0 && menu.some(item => item.id === Number(id))
+    );
+
+    let subtotal = 0;
+    let count = 0;
+
+    ids.forEach(id => {
+        const item = menu.find(food => food.id === Number(id));
+
+        subtotal += item.price * cart[id];
+        count += cart[id];
+    });
+
+    document.getElementById("cart-count").textContent = count;
+    document.getElementById("subtotal").textContent = "₹" + subtotal;
+
+    const deliveryFee = subtotal > 0 ? 30 : 0;
+
+    document.getElementById("delivery").textContent = "₹" + deliveryFee;
+    document.getElementById("total").textContent =
+        "₹" + (subtotal + deliveryFee);
+
+    if (ids.length === 0) {
+        container.innerHTML =
+            '<p class="empty">Your cart is empty. Add something delicious!</p>';
+        return;
+    }
+
+    container.innerHTML = ids.map(id => {
+        const item = menu.find(food => food.id === Number(id));
+
+        return `
+            <div class="cart-item">
+                <div>
+                    <div class="cart-item-name">${item.name}</div>
+                    <small>₹${item.price} each</small>
+
+                    <div class="quantity-controls">
+                        <button onclick="changeQuantity(${item.id}, -1)"
+                                aria-label="Decrease quantity">−</button>
+
+                        <span>${cart[id]}</span>
+
+                        <button onclick="changeQuantity(${item.id}, 1)"
+                                aria-label="Increase quantity">+</button>
+
+                        <button class="remove-btn"
+                                onclick="changeQuantity(${item.id}, -${cart[id]})">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+
+                <strong>₹${item.price * cart[id]}</strong>
+            </div>
+        `;
+    }).join("");
+}
+
+document.getElementById("search")
+    .addEventListener("input", renderMenu);
+
+document.getElementById("category")
+    .addEventListener("change", renderMenu);
+
+document.getElementById("checkout-form")
+    .addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const validItems = Object.keys(cart).some(id =>
+            cart[id] > 0 &&
+            menu.some(item => item.id === Number(id))
+        );
+
+        if (!validItems) {
+            alert("Your cart is empty. Please add a dish first.");
+            return;
+        }
+
+        const customerName =
+            document.getElementById("customer-name").value.trim();
+
+        const phone =
+            document.getElementById("phone").value.trim();
+
+        const address =
+            document.getElementById("address").value.trim();
+
+        const payment =
+            document.getElementById("payment").value;
+
+        if (!customerName || !phone || !address) {
+            alert("Please fill in all required delivery details.");
+            return;
+        }
+
+        const total =
+            document.getElementById("total").textContent;
+
+        alert(
+            "Welcome to Zafran Arabian Kitchen!\n\n" +
+            "Demo order prepared successfully.\n" +
+            "Customer: " + customerName + "\n" +
+            "Payment preference: " + payment + "\n" +
+            "Order total: " + total + "\n\n" +
+            "This is only a demonstration. No real order has been sent."
+        );
+
+        cart = {};
+        saveCart();
+        renderCart();
+        this.reset();
+    });
+
+renderMenu();
+renderCart();
+</script>
+
+</body>
+</html>
